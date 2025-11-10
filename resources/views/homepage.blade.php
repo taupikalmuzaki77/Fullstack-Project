@@ -5,7 +5,7 @@
             Update
         </p>
         <p class="text-3xl font-bold">Post Terbaru</p>
-        <p class="text-lg text-slate-500 dark:text-slate-300">
+        <p class="text-lg text-slate-500 dark:text-slate-300 mb-5">
             Baca Artikel terbaru yang masih fresh dan hangat.
         </p>
     </div>

@@ -40,7 +40,7 @@
         </div>
         {{-- Left Layout End --}}
         {{-- Right Layout Start --}}
-        <div class="lg:w-1/5 bg-white dark:bg-slate-800 shadow-md p-5 rounded-lg">
+        <div class="lg:w-1/4 h-fit bg-white dark:bg-slate-800 shadow-md p-5 rounded-lg">
             <h1 class="border-b border-gray-300 dark:border-slate-700 text-2xl font-bold pb-2 text-center">Rekomendasi
                 Game 🔥
             </h1>
