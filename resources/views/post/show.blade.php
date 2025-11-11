@@ -26,15 +26,50 @@
             <div id="disqus_thread"
                 class="text-black dark:text-white border-2 border-white dark:border-slate-800 rounded-lg p-5 shadow-md">
             </div>
+            <div id="disqus_thread"></div>
+
             <script>
-                (function() { // DON'T EDIT BELOW THIS LINE
+                var disqus_config = function() {
+                    this.page.url = "{{ url()->current() }}";
+                    this.page.identifier = "{{ md5(url()->current()) }}";
+                };
+
+                // memuat Disqus untuk pertama kali
+                function loadDisqus() {
                     var d = document,
                         s = d.createElement('script');
                     s.src = 'https://fullstack-3.disqus.com/embed.js';
                     s.setAttribute('data-timestamp', +new Date());
                     (d.head || d.body).appendChild(s);
-                })();
+                }
+
+                // reload Disqus ketika dark mode berubah atau sebaliknya
+                function reloadDisqus() {
+                    // Hapus isi container Disqus
+                    document.getElementById('disqus_thread').innerHTML = '';
+
+                    // Reset dan load ulang
+                    (function() {
+                        var d = document,
+                            s = d.createElement('script');
+                        s.src = 'https://fullstack-3.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                }
+
+                // Jalankan saat halaman pertama kali dimuat
+                document.addEventListener('DOMContentLoaded', function() {
+                    loadDisqus();
+                });
+
+                // Reload disquss dengan toggle
+                document.getElementById('darkModeToggle').addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    reloadDisqus();
+                });
             </script>
+
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered
                     by Disqus.</a></noscript>
         </div>
