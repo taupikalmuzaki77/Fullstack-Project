@@ -14,7 +14,7 @@
                 class="px-3 py-2 gap-1 font-medium items-center rounded-lg text-white hover:bg-teal-700">
                 Home
             </x-navlink>
-            <x-navlink href="/list-game" icon="listgame"
+            <x-navlink href="/game-list" icon="listgame"
                 class="px-3 py-2 gap-1 font-medium items-center rounded-lg text-white hover:bg-teal-700">
                 Game List
             </x-navlink>
