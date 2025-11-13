@@ -26,4 +26,7 @@ class Post extends Model
     // public function genre(): BelongsToMany{
     //     return $this->belongsToMany(Genre::class);
     // }
+
+    // Lazy loadaing
+    protected $with = ['category'];
 }
