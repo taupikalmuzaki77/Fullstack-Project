@@ -17,7 +17,7 @@
                 <a href="/{{ $post->slug }}" title="{{ Str::title($post->title) }}">
                     <img class="rounded-t-lg w-full h-[230px] md:h-[300px]" src="{{ asset('uploads/' . $post->image) }}"
                         alt="{{ $post->title }}" />
-                    <p class="px-5 py-1 text-sm md:text-[16px] text-center font-bold capitalize line-clamp-2 leading-6">
+                    <p class="px-2 py-1 text-sm md:text-[16px] text-center font-bold capitalize line-clamp-1 leading-6">
                         {{ $post->title }}
                     </p>
                 </a>
