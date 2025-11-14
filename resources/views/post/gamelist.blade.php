@@ -1,6 +1,6 @@
 <x-layout>
     {{-- Navigasi --}}
-    <div class="flex flex-row justify-center gap-2 ">
+    <div class="flex flex-row flex-wrap justify-center gap-2 mb-5">
         @foreach ($grouped as $letter => $posts)
             <a href="#{{ $letter }}"
                 class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md hover:ring-2 hover:ring-gray-700 dark:hover:ring-gray-200 active:scale-95 transition-all px-3 py-2 font-bold">{{ $letter }}</a>
@@ -30,13 +30,11 @@
                 d="M11.9999 10.8284L7.0502 15.7782L5.63599 14.364L11.9999 8L18.3639 14.364L16.9497 15.7782L11.9999 10.8284Z" />
         </svg>
     </button>
-
-    {{-- Script tampilkan tombol saat scroll --}}
     <script>
         const backToTopBtn = document.getElementById('backToTopBtn');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
+            if (window.scrollY > 150) {
                 backToTopBtn.classList.remove('hidden');
             } else {
                 backToTopBtn.classList.add('hidden');
