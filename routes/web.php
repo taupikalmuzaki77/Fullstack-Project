@@ -35,12 +35,12 @@ Route::get('/privacy-policy', function()
 
 Route::middleware(['guest'])->group(function()
 {
-    Route::get('register', [AuthController::class, 'registerForm'])->name('register.page');
+    // Route::get('register', [AuthController::class, 'registerForm'])->name('register.page');
 
     Route::get('login', [AuthController::class, 'loginForm'])->name('login.page');
 });
 
-Route::post('register', [AuthController::class, 'register'])->name('register');
+// Route::post('register', [AuthController::class, 'register'])->name('register');
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
