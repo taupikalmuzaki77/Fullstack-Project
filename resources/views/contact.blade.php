@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold text-center">Contact</h1>
         <br />
         <p>
-            Apabila ada saran, masukan, pertanyaan, masukan, atau kerjasama,
+            Apabila ada saran, masukan, pertanyaan, ataupun kerjasama,
             anda bisa hubungi saya melalui formulir dibawah:
         </p>
         <br>

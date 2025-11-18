@@ -8,12 +8,12 @@
     </div>
     {{-- List Game --}}
     @foreach ($grouped as $letter => $posts)
-        <h1 class="font-bold">{{ $letter }}</h1>
+        <h1 class="font-bold scroll-mt-32" id="{{ $letter }}">{{ $letter }}</h1>
         <hr class="my-2 mx-auto dark:border-gray-200" />
         <ul class="mb-4">
             @foreach ($posts as $post)
                 <li>
-                    <a href="{{ $post->slug }}" id="{{ $letter }}" class="hover:text-teal-500 capitalize">
+                    <a href="{{ $post->slug }}" class="hover:text-teal-500 capitalize">
                         {{ $post->title }}
                     </a>
                 </li>
