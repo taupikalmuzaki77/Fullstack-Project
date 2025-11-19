@@ -17,7 +17,7 @@
                 <div>
                     <p>{{ $post->description }}</p>
                     <div class="py-5">
-                        <a href="{{ $post->link }}"
+                        <a href="{{ $post->link }}" target="_blank"
                             class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-lg">Download Now</a>
                     </div>
                 </div>
