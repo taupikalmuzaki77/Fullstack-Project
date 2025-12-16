@@ -15,7 +15,9 @@
                 </h1>
                 <hr class="max-w-3xl my-4 mx-auto dark:border-gray-200" />
                 <div>
-                    <p>{{ $post->description }}</p>
+                    {{-- <p>{{ $post->description }}</p> --}}
+                    <p>{!! nl2br(e($post->description)) !!}</p>
+
                     <div class="py-5">
                         <a href="{{ $post->link }}" target="_blank"
                             class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-lg">Download Now</a>
