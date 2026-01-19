@@ -36,9 +36,20 @@ class PostController extends Controller
         $posts = Post::orderBy('title')->get();
         $grouped = $posts->groupBy(function ($item)
         {
-            return strtoupper(substr ($item->title, 0, 1));
+            $firstChar = strtoupper(substr($item->title, 0, 1));
+            if (preg_match('/^[A-Z]$/', $firstChar)) {
+                return $firstChar;
+            } else {
+                return '#';
+            }
+
+            // return strtoupper(substr ($item->title, 0, 1));
         });
         $grouped = $grouped->sortKeys();
+        if ($grouped->has('#')) {
+            $hasGroup = $grouped->pull('#');
+            $grouped = collect(['#' => $hasGroup])->merge($grouped);
+        }
         return view('post.gamelist', compact('grouped'));
     }
 
