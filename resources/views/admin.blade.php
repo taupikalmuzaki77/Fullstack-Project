@@ -71,7 +71,7 @@
     </nav>
     {{-- Navbar End --}}
     {{-- List Post Start --}}
-    <h1 class="text-center text-4xl text-white font-bold mt-10">List Posts</h1>
+    <h1 class="text-center text-4xl text-white font-bold mt-10">List Posts di halaman {{ $posts->currentpage() }}</h1>
     <div
         class="grid grid-cols-2 md:grid-cols-[repeat(3,230px)] lg:grid-cols-[repeat(4,230px)] 2xl:grid-cols-[repeat(6,230px)] justify-center gap-4 mx-3 my-5">
         @foreach ($posts as $post)
@@ -113,6 +113,7 @@
     </div>
     </div>
     {{-- List Post End --}}
+    {{ $posts->links() }}
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
