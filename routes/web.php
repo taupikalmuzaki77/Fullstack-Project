@@ -14,6 +14,8 @@ Route::get('/search', [PostController::class, 'search']);
 
 Route::get('/game-list', [PostController::class, 'gamelist']);
 
+Route::get('/game-list/{slug}', [PostController::class, 'gamelistIndex']);
+
 Route::get('/category', [CategoryController::class, 'index']);
 
 Route::get('/category/{slug}', [CategoryController::class, 'show']);

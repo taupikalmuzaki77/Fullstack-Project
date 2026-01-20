@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -30,10 +31,17 @@ class PostController extends Controller
 
         return view('post.search', compact('results', 'query'));
     }
-    
+
     public function gamelist()
     {
-        $posts = Post::orderBy('title')->get();
+        $categories = Category::all();
+        return view('post.gamelist', compact('categories'));
+    }
+
+    public function gamelistIndex($slug)
+    {
+        $category = Category::where('slug', $slug)->firstorFail();
+        $posts = $category->posts()->orderBy('title')->get();
         $grouped = $posts->groupBy(function ($item)
         {
             $firstChar = strtoupper(substr($item->title, 0, 1));
@@ -50,7 +58,7 @@ class PostController extends Controller
             $hasGroup = $grouped->pull('#');
             $grouped = collect(['#' => $hasGroup])->merge($grouped);
         }
-        return view('post.gamelist', compact('grouped'));
+        return view('post.gamelistIndex', compact('grouped'));
     }
 
     /**
