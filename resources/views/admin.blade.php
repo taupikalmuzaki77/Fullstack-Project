@@ -15,47 +15,11 @@
         <div class="container mx-auto flex justify-between px-5">
             {{-- Kiri --}}
             <div class="flex gap-1 items-center w-[188px]">
-                <a href="/"
+                <a href="/admin"
                     class="text-[20px] font-medium px-3 py-2 text-white hover:bg-teal-700 rounded-lg">Admin Panel</a>
             </div>
             {{-- Kanan --}}
-            <div class="flex flex-row-reverse items-center gap-2 py-3">
-                @auth
-                    {{-- Auth Mode --}}
-                    <button class="button" id="accountToggle">
-                        <span id="userAccountIcon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1"
-                                stroke="none" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12.1597 16C10.1243 16 8.29182 16.8687 7.01276 18.2556C8.38039 19.3474 10.114 20 12 20C13.9695 20 15.7727 19.2883 17.1666 18.1081C15.8956 16.8074 14.1219 16 12.1597 16ZM12 4C7.58172 4 4 7.58172 4 12C4 13.8106 4.6015 15.4807 5.61557 16.8214C7.25639 15.0841 9.58144 14 12.1597 14C14.6441 14 16.8933 15.0066 18.5218 16.6342C19.4526 15.3267 20 13.7273 20 12C20 7.58172 16.4183 4 12 4ZM12 5C14.2091 5 16 6.79086 16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5ZM12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7Z" />
-                            </svg>
-                        </span>
-                        <span id="userAccountCloseIcon" class="hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1"
-                                stroke="none" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z" />
-                            </svg>
-                        </span>
-                    </button>
-                @endauth
-                {{-- Search --}}
-                <button class="button" id="searchToggle">
-                    <span id="searchIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1"
-                            stroke="none" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z" />
-                        </svg>
-                    </span>
-                    <span id="searchCloseIcon" class="hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1"
-                            stroke="none" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z" />
-                        </svg>
-                    </span>
-                </button>
+            <div class="flex flex-row items-center gap-2 py-3">
                 {{-- Add Post --}}
                 <button class="button">
                     <a href="/post/create" title="Create Post">
@@ -66,12 +30,31 @@
                         </svg>
                     </a>
                 </button>
+                <button class="button">
+                    <a href="/" title="Home">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+
+                    </a>
+                </button>
             </div>
         </div>
     </nav>
     {{-- Navbar End --}}
     {{-- List Post Start --}}
-    <h1 class="text-center text-4xl text-white font-bold mt-10">List Posts di halaman {{ $posts->currentpage() }}</h1>
+    <form action="" method="GET">
+        <div class="flex justify-center my-10 gap-2">
+            <input type="search" id="search" name="search"
+                class="w-xl px-2 py-2 bg-gray-700 border-2 border-gray-200 rounded-lg text-white"
+                placeholder="Cari judul game..." autocomplete="off">
+            <button
+                class="flex cursor-pointer text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 py-3 px-3 rounded-lg"
+                type="submit">Cari</button>
+        </div>
+    </form>
     <div
         class="grid grid-cols-2 md:grid-cols-[repeat(3,230px)] lg:grid-cols-[repeat(4,230px)] 2xl:grid-cols-[repeat(6,230px)] justify-center gap-4 mx-3 my-5">
         @foreach ($posts as $post)
@@ -114,7 +97,6 @@
     </div>
     {{-- List Post End --}}
     {{ $posts->links() }}
-    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

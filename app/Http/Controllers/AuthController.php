@@ -60,17 +60,12 @@ class AuthController extends Controller
 
     public function admin()
     {
-        $posts = Post::latest()->paginate(18);
+        $posts = Post::latest()
+        ->when(request('search'), function ($query) {
+            $query->where('title', 'like', '%' . request('search') . '%');
+        })
+        ->paginate(18);
         return view('admin', compact('posts'));
-    }
-
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-
-        $results = Post::where('title', 'like', "%{$query}%" )->get();
-
-        return view('post.search', compact('results', 'query'));
     }
 
     public function logout(Request $requet)
