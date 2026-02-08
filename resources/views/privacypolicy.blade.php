@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Privacy Policy Petani Emulator">
     <div class="bg-white dark:bg-slate-800 shadow-md p-5 rounded-lg w-fit max-w-2xl mx-auto">
         <h1 class="text-2xl font-bold text-center">Privacy Policy</h1>
         <p class="font-bold">Kebijakan Privasi</p>

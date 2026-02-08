@@ -1,5 +1,12 @@
+@props([
+    'title' => 'Petani Emulator',
+    'description' => 'Website tempat download games melaui link Google Drive',
+    'type' => 'website',
+    'image' => 'favicon.ico',
+    'url' => url()->current(),
+])
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +15,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     @vite('resources/css/app.css')
-    <title>{{ config('app.name') }}</title>
+    <title>{{ $title }}</title>
+    <meta name="description" content="{{ $description }}">
+    <meta property="og:site_name" content="Petani Emulator">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:type" content="{{ $type }}">
+    <meta property="og:image" content="{{ asset($image) }}">
+    <meta property="og:url" content="{{ $url }}">
 </head>
 
 <body class="bg-white text-slate-800 dark:bg-[#1c1c1c] dark:text-white">
