@@ -1,4 +1,5 @@
-<x-layout title="{{ $post->title }} ROM Download" image="{{ $post->image }}" description="{{ $post->description }}">
+<x-layout title="{{ $post->title }} ROM Download" image="/uploads/{{ $post->image }}"
+    description="{{ $post->description }}">
     <div class="flex flex-col lg:flex-row gap-5 justify-center">
         {{-- Left Layout Start --}}
         <div class="flex flex-col gap-5 flex-1 lg:max-w-3xl">
