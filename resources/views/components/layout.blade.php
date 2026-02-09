@@ -18,7 +18,7 @@
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}">
     <meta property="og:site_name" content="Petani Emulator">
-    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:title" content="{{ ucwords($title) }}">
     <meta property="og:description" content="{{ $description }}">
     <meta property="og:type" content="{{ $type }}">
     <meta property="og:image" content="{{ asset($image) }}">
