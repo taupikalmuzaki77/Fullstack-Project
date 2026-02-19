@@ -1,155 +1,177 @@
 // Running Text
-const words = ["Petani Emulator"];
-let i = 0;
-let j = 0;
-let currentWord = "";
-let isDeleting = false;
+function createTypewriter(elementId, words, speed = 150) {
+    let i = 0;
+    let j = 0;
+    let isDeleting = false;
 
-function type() {
-    currentWord = words[i];
-    if (isDeleting) {
-        document.getElementById("logo").textContent = currentWord.substring(
-            0,
-            j - 1
-        );
-        j--;
-        if (j == 0) {
-            isDeleting = false;
-            i++;
-            if (i == words.length) {
-                i = 0;
+    function type() {
+        const currentWord = words[i];
+        const element = document.getElementById(elementId);
+
+        if (!element) return;
+
+        if (isDeleting) {
+            element.textContent = currentWord.substring(0, j--);
+            if (j < 0) {
+                isDeleting = false;
+                i = (i + 1) % words.length;
+            }
+        } else {
+            element.textContent = currentWord.substring(0, j++);
+            if (j > currentWord.length) {
+                isDeleting = true;
             }
         }
-    } else {
-        document.getElementById("logo").textContent = currentWord.substring(
-            0,
-            j + 1
-        );
-        j++;
-        if (j == currentWord.length) {
-            isDeleting = true;
-        }
+
+        setTimeout(type, speed);
     }
-    setTimeout(type, 300);
+
+    type();
 }
 
-type();
-
-// Dark Mode Start
-document.addEventListener("DOMContentLoaded", function () {
+// dark mode
+function createDarkMode(buttonId, moonId, sunId) {
+    const button = document.getElementById(buttonId);
+    const moon = document.getElementById(moonId);
+    const sun = document.getElementById(sunId);
     const body = document.body;
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const moonIcon = document.getElementById("moonIcon");
-    const sunIcon = document.getElementById("sunIcon");
 
-    window.addEventListener("DOMContentLoaded", () => {
+    if (!button || !moon || !sun) return;
+
+    function applyTheme(isDark) {
+        body.classList.toggle("dark", isDark);
+        moon.classList.toggle("hidden", isDark);
+        sun.classList.toggle("hidden", !isDark);
+    }
+
+    function loadTheme() {
         const isDark = localStorage.getItem("darkMode") === "true";
+        applyTheme(isDark);
+    }
 
-        if (isDark) {
-            body.classList.add("dark");
-            moonIcon.classList.add("hidden");
-            sunIcon.classList.remove("hidden");
-        } else {
-            body.classList.remove("dark");
-            moonIcon.classList.remove("hidden");
-            sunIcon.classList.add("hidden");
-        }
-    });
-
-    darkModeToggle.addEventListener("click", () => {
-        const isDark = body.classList.toggle("dark");
-
+    button.addEventListener("click", () => {
+        const isDark = !body.classList.contains("dark");
+        applyTheme(isDark);
         localStorage.setItem("darkMode", isDark);
-        if (isDark) {
-            console.log("Mode gelap");
-            moonIcon.classList.add("hidden");
-            sunIcon.classList.remove("hidden");
-        } else {
-            console.log("Mode terang");
-            moonIcon.classList.remove("hidden");
-            sunIcon.classList.add("hidden");
-        }
     });
 
-    // Dark Mode End
-    // Sidebar start
-    const sidebarToggle = document.getElementById("sidebarToggle");
-    const overlay = document.getElementById("overlay");
-    const sidebar = document.getElementById("sidebar");
-    const menuIcon = document.getElementById("menuIcon");
-    const closeIcon = document.getElementById("closeIcon");
+    loadTheme();
+}
 
-    sidebarToggle.addEventListener("click", () => {
-        const isOpen = sidebar.classList.contains("-translate-x-full");
-        sidebar.classList.toggle("-translate-x-full");
-        sidebar.classList.toggle("translate-x-0");
+// sidebar
+function createSidebar(buttonId, elementId, overlayId, openId, closeId) {
+    const button = document.getElementById(buttonId);
+    const element = document.getElementById(elementId);
+    const overlay = document.getElementById(overlayId);
+    const menu = document.getElementById(openId);
+    const close = document.getElementById(closeId);
 
-        if (isOpen) {
-            console.log("terbuka");
-            menuIcon.classList.add("hidden");
-            closeIcon.classList.remove("hidden");
-            overlay.classList.remove("hidden");
-        } else {
-            console.log("tertutup");
-            menuIcon.classList.remove("hidden");
-            closeIcon.classList.add("hidden");
-            overlay.classList.add("hidden");
-        }
+    if (!button || !element || !menu || !close) return;
+
+    function applysidebarState(isOpen) {
+        element.classList.toggle("-translate-x-full", !isOpen);
+        element.classList.toggle("translate-x-0", isOpen);
+        overlay.classList.toggle("hidden");
+        menu.classList.toggle("hidden", isOpen);
+        close.classList.toggle("hidden", !isOpen);
+    }
+
+    button.addEventListener("click", () => {
+        // secara default sidebar tertutup (-translate-full)
+        const shouldOpen = element.classList.contains("-translate-x-full");
+        applysidebarState(shouldOpen);
     });
-    // Sidebar End
-    // Search Animation start
-    const searchToggle = document.getElementById("searchToggle");
-    const searchoverlay = document.getElementById("searchoverlay");
-    const search = document.getElementById("search");
-    const searchInput = document.getElementById("searchInput");
-    const searchIcon = document.getElementById("searchIcon");
-    const searchCloseIcon = document.getElementById("searchCloseIcon");
+}
 
-    searchToggle.addEventListener("click", () => {
-        const isOpen = search.classList.contains("-translate-x-full");
-        search.classList.toggle("-translate-x-full");
-        search.classList.toggle("translate-x-0");
+// search
+function createSearchAnimation(
+    buttonId,
+    elementId,
+    overlayId,
+    inputId,
+    openId,
+    closeId,
+) {
+    const button = document.getElementById(buttonId);
+    const element = document.getElementById(elementId);
+    const overlay = document.getElementById(overlayId);
+    const input = document.getElementById(inputId);
+    const open = document.getElementById(openId);
+    const close = document.getElementById(closeId);
 
-        if (isOpen) {
-            console.log("search terbuka");
-            searchIcon.classList.add("hidden");
-            searchCloseIcon.classList.remove("hidden");
-            searchoverlay.classList.remove("hidden");
-            setTimeout(() => {
-                searchInput.focus();
-            }, 300);
-        } else {
-            console.log("search tertutup");
-            searchIcon.classList.remove("hidden");
-            searchCloseIcon.classList.add("hidden");
-            searchoverlay.classList.add("hidden");
-        }
+    if (!button || !element || !overlay || !input || !open || !close) return;
+
+    function applySearchAnimation(isOpen) {
+        element.classList.toggle("-translate-x-full", !isOpen);
+        element.classList.toggle("translate-x-0", isOpen);
+        overlay.classList.toggle("hidden");
+        setTimeout(() => {
+            input.focus();
+        }, 300);
+        open.classList.toggle("hidden", isOpen);
+        close.classList.toggle("hidden", !isOpen);
+    }
+
+    button.addEventListener("click", () => {
+        const shouldOpen = element.classList.contains("-translate-x-full");
+        applySearchAnimation(shouldOpen);
     });
-    // Search Animation End
-    // User Account Start
-    const accountToggle = document.getElementById("accountToggle");
-    const accountInfo = document.getElementById("accountInfo");
-    const accountOverlay = document.getElementById("accountOverlay");
-    const userAccountIcon = document.getElementById("userAccountIcon");
-    const userAccountCloseIcon = document.getElementById(
-        "userAccountCloseIcon"
+}
+
+// admin
+function createAdminNavigation(
+    buttonId,
+    elementId,
+    overlayId,
+    openId,
+    closeId,
+) {
+    const button = document.getElementById(buttonId);
+    const element = document.getElementById(elementId);
+    const overlay = document.getElementById(overlayId);
+    const open = document.getElementById(openId);
+    const close = document.getElementById(closeId);
+
+    if (!button || !element || !open || !close) return;
+
+    function applyAdminState(isOpen) {
+        element.classList.toggle("hidden", !isOpen);
+        element.classList.toggle("flex", isOpen);
+        overlay.classList.toggle("hidden");
+        open.classList.toggle("hidden", isOpen);
+        close.classList.toggle("hidden", !isOpen);
+    }
+
+    button.addEventListener("click", () => {
+        shouldOpen = element.classList.contains("hidden");
+        applyAdminState(shouldOpen);
+    });
+}
+
+// content loaded
+document.addEventListener("DOMContentLoaded", function () {
+    createTypewriter("logo", ["Petani Emulator"]);
+    createDarkMode("darkModeToggle", "moonIcon", "sunIcon");
+    createSidebar(
+        "sidebarToggle",
+        "sidebar",
+        "overlay",
+        "menuIcon",
+        "closeIcon",
     );
-
-    accountToggle.addEventListener("click", () => {
-        const isOpen = accountInfo.classList.contains("hidden");
-        accountInfo.classList.toggle("hidden");
-        accountInfo.classList.toggle("flex");
-        if (isOpen) {
-            console.log("Account info open");
-            accountOverlay.classList.remove("hidden");
-            userAccountIcon.classList.add("hidden");
-            userAccountCloseIcon.classList.remove("hidden");
-        } else {
-            console.log("Account info close");
-            accountOverlay.classList.add("hidden");
-            userAccountIcon.classList.remove("hidden");
-            userAccountCloseIcon.classList.add("hidden");
-        }
-    });
-    // User Account End
+    createSearchAnimation(
+        "searchToggle",
+        "search",
+        "searchoverlay",
+        "searchInput",
+        "searchIcon",
+        "searchCloseIcon",
+    );
+    createAdminNavigation(
+        "accountToggle",
+        "accountInfo",
+        "accountOverlay",
+        "userAccountIcon",
+        "userAccountCloseIcon",
+    );
 });
