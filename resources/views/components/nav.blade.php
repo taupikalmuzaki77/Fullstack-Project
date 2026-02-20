@@ -6,10 +6,10 @@
         </span>
         {{-- center nav component --}}
         <span>
-            <x-navlink href="/game-list" icon="gamelist">
+            <x-navlink href="" icon="gamelist">
                 Game List
             </x-navlink>
-            <x-navlink href="/game-list" icon="category">
+            <x-navlink href="" icon="category">
                 Category
             </x-navlink>
         </span>
