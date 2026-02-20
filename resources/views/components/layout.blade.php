@@ -27,7 +27,7 @@
 
 <body class="bg-white text-slate-800 dark:bg-[#1c1c1c] dark:text-white">
     <div>
-        <x-navbar></x-navbar>
+        <x-nav></x-nav>
         <x-sidebar></x-sidebar>
         <x-search></x-search>
         <x-accountinfo></x-accountinfo>

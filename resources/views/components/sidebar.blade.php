@@ -2,7 +2,7 @@
 
 <div id="sidebar"
     class="fixed top-0 left-0 h-full px-4 text-white transform -translate-x-full transition-transform duration-300 z-50 flex justify-center items-center">
-    <div class="bg-gray-800 p-5 rounded-lg">
+    <span class="bg-gray-800 p-5 rounded-lg">
         <div class="flex flex-col items-center">
             <img src="{{ asset('icon/profil.jpeg') }}" alt="foto penulis" class="w-[100px] h-[100px] rounded-full" />
             <h1 class="font-bold">Taupik Al Muzaki</h1>
@@ -10,22 +10,9 @@
         </div>
         <hr class="bg-white my-3" />
         <div class="flex flex-col gap-1">
-            <x-navlink href="/" icon="home"
-                class="px-3 py-2 gap-1 font-medium items-center rounded-lg text-white hover:bg-teal-700">
-                Home
-            </x-navlink>
-            <x-navlink href="/game-list" icon="listgame"
-                class="px-3 py-2 gap-1 font-medium items-center rounded-lg text-white hover:bg-teal-700">
-                Game List
-            </x-navlink>
-            <x-navlink href="/category" icon="kategori"
-                class="px-3 py-2 gap-1 font-medium items-center rounded-lg text-white hover:bg-teal-700">
-                Category
-            </x-navlink>
-            {{-- <x-navlink href="/genre" icon="genre"
-                class="px-3 py-2 gap-1 font-medium items-center rounded-lg text-white hover:bg-teal-700">
-                Genre
-            </x-navlink> --}}
+            <a href="" class="sidebarmenustyle">Home</a>
+            <a href="" class="sidebarmenustyle">Gamelist</a>
+            <a href="" class="sidebarmenustyle">Category</a>
         </div>
-    </div>
+    </span>
 </div>
