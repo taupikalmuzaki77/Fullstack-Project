@@ -15,7 +15,7 @@
         </span>
         {{-- right nav component --}}
         <span class="flex flex-row-reverse gap-1">
-            <button id="sidebarToggle" class="rightnavstyle">
+            <button id="sidebarToggle" class="rightnavstyle md:hidden">
                 <x-navbutton icon="menu" id="menuIcon"></x-navbutton>
                 <x-navbutton icon="close" id="closeIcon" class="hidden"></x-navbutton>
             </button>
