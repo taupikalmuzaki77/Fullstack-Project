@@ -2,38 +2,35 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PostController::class, 'index']);
+// homepage route
+Route::get('/', [PostController::class, 'index'])->name('homepage');
 
-Route::get('/latest', [PostController::class, 'latest']);
+// about page route
+Route::view('/about', 'about')->name('about');
+
+// contact page route
+Route::view('/contact', 'contact')->name('contact');
+
+// privacy policy page route
+Route::view('/privacy-policy', 'privacypolicy')->name('privacy-policy');
+
+// latest posts route
+Route::get('/latest', [PostController::class, 'latest'])->name('latestposts');
 
 Route::get('/search', [PostController::class, 'search']);
 
-Route::get('/game-list', [PostController::class, 'gamelist']);
+// game list route
+Route::get('/game-list', [PostController::class, 'gamelist'])->name('gamelist');
 
 Route::get('/game-list/{slug}', [PostController::class, 'gamelistIndex']);
 
-Route::get('/category', [CategoryController::class, 'index']);
+// category routes
+Route::get('/category', [CategoryController::class, 'index'])->name('categories');
 
 Route::get('/category/{slug}', [CategoryController::class, 'show']);
-
-Route::get('/about', function()
-{
-    return view('about');
-});
-
-Route::get('/contact', function()
-{
-    return view('contact');
-});
-
-Route::get('/privacy-policy', function()
-{
-    return view('privacypolicy');
-});
 
 Route::middleware(['guest'])->group(function()
 {

@@ -2,9 +2,9 @@
     <div class="flex flex-col gap-2 items-center justify-center max-w-7xl p-4 md:py-8 mx-auto">
         <a href="" class="font-medium text-[18px] hover:text-teal-500">Petani Emulator</a>
         <span class="flex flex-row gap-2">
-            <a href="" class="hover:text-teal-500 font-medium">About</a>
-            <a href="" class="hover:text-teal-500 font-medium">Contact</a>
-            <a href="" class="hover:text-teal-500 font-medium">Privacy Policy</a>
+            <a href="{{ route('about') }}" class="hover:text-teal-500 font-medium">About</a>
+            <a href="{{ route('contact') }}" class="hover:text-teal-500 font-medium">Contact</a>
+            <a href="{{ route('privacy-policy') }}" class="hover:text-teal-500 font-medium">Privacy Policy</a>
         </span>
         <hr class="border border-white w-full  max-w-md">
         <span class="flex flex-row gap-1">

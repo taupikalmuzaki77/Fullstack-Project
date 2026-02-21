@@ -2,14 +2,14 @@
     <div class="flex justify-between items-center text-white font-medium p-5">
         {{-- left nav component --}}
         <span class="w-[143px]">
-            <a href="" id="logo" class="px-3 py-2 hover:bg-teal-700 rounded-lg">P</a>
+            <a href="{{ route('homepage') }}" id="logo" class="px-3 py-2 hover:bg-teal-700 rounded-lg">P</a>
         </span>
         {{-- center nav component --}}
         <span>
-            <x-navlink href="" icon="gamelist">
+            <x-navlink href="{{ route('gamelist') }}" icon="gamelist">
                 Game List
             </x-navlink>
-            <x-navlink href="" icon="category">
+            <x-navlink href="{{ route('categories') }}" icon="category">
                 Category
             </x-navlink>
         </span>

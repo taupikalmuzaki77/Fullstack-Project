@@ -28,7 +28,7 @@
     </div>
 
     <div class="flex justify-center mt-6">
-        <a href="/latest" class="text-white bg-teal-600 hover:bg-teal-700 px-3 py-2 rounded-lg">
+        <a href="{{ route('latestposts') }}" class="text-white bg-teal-600 hover:bg-teal-700 px-3 py-2 rounded-lg">
             Lihat Semua Post
         </a>
     </div>
