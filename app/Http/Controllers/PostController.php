@@ -8,21 +8,21 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Homepage Controller
     public function index() 
     {
         $posts = Post::latest()->get();
         return view('homepage', compact('posts'));
     }
 
+    // Latest Post Controller
     public function latest()
     {
         $posts = Post::latest()->paginate(18);
         return view('post.latest', compact('posts'));
     }
 
+    // Search Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -32,12 +32,14 @@ class PostController extends Controller
         return view('post.search', compact('results', 'query'));
     }
 
+    // Gamelist page 1 (Mengambil isi tabel kategori yang memiliki relation dengan post)
     public function gamelist()
     {
         $categories = Category::all();
         return view('post.gamelist', compact('categories'));
     }
 
+    // Gamelist page 2 (Tampilkan isi post berdasarkan kategori yang dipilih)
     public function gamelistIndex($slug)
     {
         $category = Category::where('slug', $slug)->firstorFail();
@@ -61,18 +63,14 @@ class PostController extends Controller
         return view('post.gamelistIndex', compact('grouped'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // membuat post
     public function create()
     {
         $posts = Post::all();
         return view('post.create', compact('posts'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // menyimpan post ke dalam database
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -96,9 +94,7 @@ class PostController extends Controller
         return back()->with('success', 'Post has been created');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Menampilkan post
     public function show(Post $post)
     {
         $post->load('category');
@@ -106,17 +102,13 @@ class PostController extends Controller
         return view('post.show', compact('posts', 'post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Edit post
     public function edit(Post $post)
     {
         return view('post.edit', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Menyimpan hasil edit post ke database
     public function update(Request $request, Post $post)
     {
         $data = $request->validate([
@@ -149,9 +141,7 @@ class PostController extends Controller
         return redirect()->route('post.create')->with('success', 'Post has been updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Menghapus post
     public function destroy(Post $post)
     {
         if($post->image)
