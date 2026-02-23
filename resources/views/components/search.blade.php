@@ -21,9 +21,8 @@
     </form>
     {{-- Hasil search --}}
     <div class="flex items-center w-[300px] md:w-lg lg:w-2xl mx-auto flex-row justify-between gap-2 pt-5 z-50">
-        {{-- isi disini hasil live --}}
         <div id="liveResults"
-            class="flex flex-col w-[300px] md:w-lg lg:w-2xl mx-auto gap-2 pt-5 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            class="hidden flex-col p-3 w-full bg-white dark:bg-slate-800 text-black dark:text-white rounded-md">
         </div>
     </div>
 </div>
@@ -53,24 +52,27 @@
                 .then(data => {
 
                     liveResults.innerHTML = '';
+                    liveResults.classList.remove("hidden");
+                    liveResults.classList.add("flex");
 
                     if (data.length === 0) {
                         liveResults.innerHTML =
-                            `<p class="px-4 py-2 text-gray-500">Tidak ditemukan</p>`;
+                            `<p class="text-white p-2 text-center">Judul tidak ditemukan</p>`;
                         return;
                     }
 
                     data.forEach(post => {
-                        liveResults.innerHTML += `
-                        <a href="/${post.slug}"
-                           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
-                           ${post.title}
-                        </a>
-                    `;
+                        liveResults.innerHTML +=
+                            `
+                            <a href="/${post.slug}" class="border-2 rounded-md hover:border-blue-500 flex flex-row items-center gap-2 my-1">
+                                <img src="/uploads/${post.image}" class="w-fit h-[70px] md:h-[100px] object-contain rounded-md"/>
+                                ${post.title}
+                            </a>
+                        `;
                     });
                 });
 
-        }, 300); // debounce 300ms
+        }, 300);
 
     });
 </script>
