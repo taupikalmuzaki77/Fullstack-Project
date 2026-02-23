@@ -16,22 +16,22 @@
         {{-- right nav component --}}
         <span class="flex flex-row-reverse gap-1">
             <button id="sidebarToggle" class="rightnavstyle md:hidden">
-                <x-navbutton icon="menu" id="menuIcon"></x-navbutton>
-                <x-navbutton icon="close" id="closeIcon" class="hidden"></x-navbutton>
+                <x-button icon="menu" id="menuIcon"></x-button>
+                <x-button icon="close" id="closeIcon" class="hidden"></x-button>
             </button>
             @auth
                 <button id="accountToggle" class="rightnavstyle">
-                    <x-navbutton icon="user" id="userAccountIcon"></x-navbutton>
-                    <x-navbutton icon="close" id="userAccountCloseIcon" class="hidden"></x-navbutton>
+                    <x-button icon="user" id="userAccountIcon"></x-button>
+                    <x-button icon="close" id="userAccountCloseIcon" class="hidden"></x-button>
                 </button>
             @endauth
             <button id="searchToggle" class="rightnavstyle">
-                <x-navbutton icon="search" id="searchIcon"></x-navbutton>
-                <x-navbutton icon="close" id="searchCloseIcon" class="hidden"></x-navbutton>
+                <x-button icon="search" id="searchIcon"></x-button>
+                <x-button icon="close" id="searchCloseIcon" class="hidden"></x-button>
             </button>
             <button id="darkModeToggle" class="rightnavstyle">
-                <x-navbutton icon="moon" id="moonIcon" class="hidden"></x-navbutton>
-                <x-navbutton icon="sun" id="sunIcon" class="hidden"></x-navbutton>
+                <x-button icon="moon" id="moonIcon" class="hidden"></x-button>
+                <x-button icon="sun" id="sunIcon" class="hidden"></x-button>
             </button>
         </span>
     </div>

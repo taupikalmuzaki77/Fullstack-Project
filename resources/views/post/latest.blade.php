@@ -1,4 +1,5 @@
 <x-layout>
+    {{-- Header --}}
     <div class="flex flex-col mb-5">
         <p class="font-bold uppercase text-teal-600 dark:text-teal-400">
             ALl post
@@ -9,6 +10,7 @@
         </p>
     </div>
 
+    {{-- Content --}}
     <div
         class="grid grid-cols-2 md:grid-cols-[repeat(3,230px)] lg:grid-cols-[repeat(4,230px)] 2xl:grid-cols-[repeat(6,230px)] justify-center gap-4 mb-5">
         @forelse ($posts as $post)
@@ -27,5 +29,50 @@
         @endforelse
     </div>
 
-    {{ $posts->links() }}
+    {{-- Pagination Logic --}}
+    @php
+        $current = $posts->currentPage();
+        $last = $posts->lastPage();
+
+        $start = max($current - 4, 1);
+        $end = $current;
+
+        if ($current < 5) {
+            $start = 1;
+            $end = min(5, $last);
+        }
+    @endphp
+
+    {{-- Pagination Element --}}
+    @if ($last > 1)
+        <div class="flex justify-center items-center mt-6">
+            {{-- skipt to first page --}}
+            <a href="{{ $posts->url(1) }}"
+                class="dark:bg-slate-800 px-1 md:px-3 py-1 border rounded-l-md leading-none {{ $current == 1 ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600' }}">
+                <x-button icon="firstPage"></x-button>
+            </a>
+            {{-- previous page --}}
+            <a href="{{ $posts->previousPageUrl() ?? '#' }}"
+                class="dark:bg-slate-800 px-1 md:px-3 py-1 border leading-none {{ $posts->onFirstPage() ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600' }}">
+                <x-button icon="prevPage"></x-button>
+            </a>
+            {{-- number page --}}
+            @for ($i = $start; $i <= $end; $i++)
+                <a href="{{ $posts->url($i) }}"
+                    class="dark:bg-slate-800 px-3 py-1 border {{ $i == $current ? 'bg-teal-500 dark:bg-teal-500 font-bold' : 'cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600' }}">
+                    {{ $i }}
+                </a>
+            @endfor
+            {{-- next page --}}
+            <a href="{{ $posts->nextPageUrl() ?? '#' }}"
+                class="dark:bg-slate-800 px-1 md:px-3 py-1 border leading-none {{ $posts->hasMorePages() ? 'cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600' : 'cursor-not-allowed' }}">
+                <x-button icon="nextPage"></x-button>
+            </a>
+            {{-- skipt to last page --}}
+            <a href="{{ $posts->url($last) }}"
+                class="dark:bg-slate-800 px-1 md:px-3 py-1 border rounded-r-md leading-none {{ $current == $last ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600' }}">
+                <x-button icon="lastPage"></x-button>
+            </a>
+        </div>
+    @endif
 </x-layout>
