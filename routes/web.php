@@ -20,7 +20,11 @@ Route::view('/privacy-policy', 'privacypolicy')->name('privacy-policy');
 // latest posts route
 Route::get('/latest', [PostController::class, 'latest'])->name('latestposts');
 
+// search route
 Route::get('/search', [PostController::class, 'search']);
+
+// live search route
+Route::get('/search/live', [PostController::class, 'liveSearch']);
 
 // game list route
 Route::get('/game-list', [PostController::class, 'gamelist'])->name('gamelist');

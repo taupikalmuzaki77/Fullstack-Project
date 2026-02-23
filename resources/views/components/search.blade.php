@@ -1,4 +1,5 @@
 <div id="search" class="fixed z-50 w-full transform -translate-x-full transition-transform duration-300">
+    {{-- Input --}}
     <form action="/search" method="GET"
         class="flex items-center w-[300px] md:w-lg lg:w-2xl mx-auto flex-row justify-between gap-2 pt-5 z-50">
         <div class="flex relative w-full">
@@ -18,7 +19,58 @@
             Cari
         </button>
     </form>
+    {{-- Hasil search --}}
+    <div class="flex items-center w-[300px] md:w-lg lg:w-2xl mx-auto flex-row justify-between gap-2 pt-5 z-50">
+        {{-- isi disini hasil live --}}
+        <div id="liveResults"
+            class="flex flex-col w-[300px] md:w-lg lg:w-2xl mx-auto gap-2 pt-5 z-50 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+        </div>
+    </div>
 </div>
 
 <div id="searchoverlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-30 hidden transition-opacity duration-300">
 </div>
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const liveResults = document.getElementById('liveResults');
+
+    let debounceTimeout;
+
+    searchInput.addEventListener('keyup', function() {
+        let query = this.value;
+
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+
+            if (query.length < 2) {
+                liveResults.innerHTML = '';
+                return;
+            }
+
+            fetch(`/search/live?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+
+                    liveResults.innerHTML = '';
+
+                    if (data.length === 0) {
+                        liveResults.innerHTML =
+                            `<p class="px-4 py-2 text-gray-500">Tidak ditemukan</p>`;
+                        return;
+                    }
+
+                    data.forEach(post => {
+                        liveResults.innerHTML += `
+                        <a href="/${post.slug}"
+                           class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+                           ${post.title}
+                        </a>
+                    `;
+                    });
+                });
+
+        }, 300); // debounce 300ms
+
+    });
+</script>

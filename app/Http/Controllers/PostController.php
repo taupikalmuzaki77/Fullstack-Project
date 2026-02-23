@@ -32,6 +32,22 @@ class PostController extends Controller
         return view('post.search', compact('results', 'query'));
     }
 
+    // Live Search Controller
+    public function liveSearch(Request $request)
+    {
+        $query = $request->input('query');
+
+        if (!$query) {
+            return response()->json([]);
+        }
+
+        $results = Post::where('title', 'like', "%{$query}%")
+            ->limit(5)
+            ->limit(5)
+            ->get();
+        return response()->json($results);
+    }
+
     // Gamelist page 1 (Mengambil isi tabel kategori yang memiliki relation dengan post)
     public function gamelist()
     {
