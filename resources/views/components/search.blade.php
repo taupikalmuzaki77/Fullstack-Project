@@ -19,7 +19,7 @@
             Cari
         </button>
     </form>
-    {{-- Hasil search --}}
+    {{-- Hasil live search --}}
     <div class="flex items-center w-[300px] md:w-lg lg:w-2xl mx-auto flex-row justify-between gap-2 pt-5 z-50">
         <div id="liveResults"
             class="hidden flex-col p-3 w-full bg-white dark:bg-slate-800 text-black dark:text-white rounded-md">

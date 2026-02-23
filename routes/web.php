@@ -26,16 +26,19 @@ Route::get('/search', [PostController::class, 'search']);
 // live search route
 Route::get('/search/live', [PostController::class, 'liveSearch']);
 
-// game list route
+// game list page 1 route
 Route::get('/game-list', [PostController::class, 'gamelist'])->name('gamelist');
 
+// game list page 2 route
 Route::get('/game-list/{slug}', [PostController::class, 'gamelistIndex']);
 
-// category routes
+// category page 1 route
 Route::get('/category', [CategoryController::class, 'index'])->name('categories');
 
+// category page 2 route
 Route::get('/category/{slug}', [CategoryController::class, 'show']);
 
+// middleware route
 Route::middleware(['guest'])->group(function()
 {
     // Route::get('register', [AuthController::class, 'registerForm'])->name('register.page');
@@ -47,12 +50,16 @@ Route::middleware(['guest'])->group(function()
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
+// admin page route
 Route::get('admin', [AuthController::class, 'admin'])
     ->name('admin')
     ->middleware(['auth']);
 
+// logout route
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+// CRUD route
 Route::resource('post', PostController::class);
 
+// ambil data post berdasarkan slug
 Route::get('/{post:slug}', [PostController::class, 'show'] );
